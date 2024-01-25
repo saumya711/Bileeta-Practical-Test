@@ -1,0 +1,224 @@
+{
+	"info": {
+		"_postman_id": "fa8d7d70-4f06-4c4f-9d80-15c9dfffee5a",
+		"name": "Tutorial_SQL",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24915767",
+		"_collection_link": "https://lunar-crescent-874973.postman.co/workspace/Team-Workspace~f415c383-a43d-4e5d-86bf-7ed86f41c344/collection/24915767-fa8d7d70-4f06-4c4f-9d80-15c9dfffee5a?action=share&source=collection_link&creator=24915767"
+	},
+	"item": [
+		{
+			"name": "create order",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"CustomerCode\": \"C004\",\r\n    \"SubTotal\": \"1500\",\r\n    \"DiscountTotal\": \"400\",\r\n    \"NetTotal\": \"1100\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/order",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"order"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get orders",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/orders",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"orders"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get customers",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/customers",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"customers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete order",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/order/35",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"order",
+						"35"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "edit product details",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"CustomerCode\":\"C004\",\r\n    \"ProductCode\":\"P001\",\r\n    \"Quantity\":4,\r\n    \"UnitPrice\":200,\r\n    \"TotalAmount\":800\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/customer-product/8",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"customer-product",
+						"8"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get customer product by id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/customer-product/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"customer-product",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get orders by customer",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/getByCustomer/C002",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"getByCustomer",
+						"C002"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Order",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"CustomerCode\": \"C004\",\r\n    \"SubTotal\": \"1700\",\r\n    \"DiscountTotal\": \"500\",\r\n    \"NetTotal\": \"1200\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/order/39",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"order",
+						"39"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get order by id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/order/39",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"order",
+						"39"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

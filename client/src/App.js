@@ -6,6 +6,7 @@ import Orders from "./pages/Orders";
 import AddCustomerProduct from "./components/AddCustomerProduct";
 import UpdateCustomerProduct from "./components/UpdateCustomerProduct";
 import AddOrder from "./components/AddOrder";
+import UpdateOrder from "./components/UpdateOrder";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
             <Routes>
               <Route exact path="/" element={<Orders />} />
               <Route exact path="/add-order" element={<AddOrder />} />
+              <Route exact path="/update-order/:OrderID" element={<UpdateOrder />} />
               <Route exact path="/add-customer-product" element={<AddCustomerProduct />} />
               <Route exact path="/update-customer-product/:ID" element={<UpdateCustomerProduct />} />
             </Routes>

@@ -20,4 +20,11 @@ export const getOrderById = async (OrderID) => {
   return await axios.get(
     `${process.env.REACT_APP_API}/order/${OrderID}`);
 };
+
+export const updateOrder = async (OrderID, orderData) => {
+  return await axios.put(
+    `${process.env.REACT_APP_API}/order/${OrderID}`, 
+    orderData
+  );
+};
   

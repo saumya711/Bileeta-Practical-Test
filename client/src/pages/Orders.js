@@ -73,7 +73,7 @@ const Orders = () => {
                 <td>{order.NetTotal}</td>
                 <td>
                   <div className="order-icons">
-                    <Link to={`/update-customer-product/${order.OrderID}`}>
+                    <Link to={`/update-order/${order.OrderID}`}>
                       <FaEdit
                         color="purple"
                       />

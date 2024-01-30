@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { getCustomers } from "../functions/cutomer";
-import { getProducts } from "../functions/products";
-import { createProductDetail } from "../functions/customerProducts";
+import { getOrderById, updateOrder } from "../functions/order"
 import { toast } from "react-toastify";
 import { Link, useNavigate } from "react-router-dom";
+import { useParams } from 'react-router-dom';
 
 const initialState = {
   CustomerCode: "",
@@ -12,7 +11,7 @@ const initialState = {
   NetTotal: "",
 };
 
-const UpdateOrderForm = () => {
+const UpdateOrder = () => {
   const [values, setValues] = useState(initialState);
   const [loading, setLoading] = useState(false);
   const [customers, setCustomers] = useState([]);
@@ -22,39 +21,46 @@ const UpdateOrderForm = () => {
 
   const navigate = useNavigate();
 
+  let { OrderID } = useParams();
+
   useEffect(() => {
-    getAllCustomers();
+    getOrder();
   }, []);
 
-  const getAllCustomers = () => {
+  const getOrder= async () => {
     setLoading(true);
-    getCustomers().then((res) => {
-      setCustomers(res.data);
-      console.log("customers", res.data);
-      setLoading(false);
-    });
+    getOrderById(OrderID)
+      .then((res) => {
+        setValues({ ...values, ...res.data });
+        console.log(res.data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        if (err.response.status === 400) {
+          setLoading(false);
+          toast.error(err.response.data);
+        }
+      });
   };
-
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     const newValue = { ...values, [name]: value };
-
-    if (name === "Quantity" || name === "UnitPrice") {
-      const newTotalAmount = newValue.Quantity * newValue.UnitPrice;
-      newValue.TotalAmount = newTotalAmount.toFixed(2);
+  
+    if (name === "DiscountTotal") {
+      const newNetTotal = SubTotal - parseFloat(value || 0);
+      newValue.NetTotal = newNetTotal.toFixed(2);
     }
-
+  
     setValues(newValue);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    createProductDetail(values)
+    updateOrder(OrderID, values)
       .then((res) => {
         console.log(res);
-        toast.success("Order Created Successfully");
-        setValues(initialState);
-        navigate("/add-order");
+        toast.success("Order Updated Successfully");
+        navigate('/');
       })
       .catch((err) => {
         console.log(err);
@@ -65,13 +71,21 @@ const UpdateOrderForm = () => {
   return (
     <form className="order-form" onSubmit={handleSubmit}>
       <div className="amount-form">
+      <label>Customer Code:</label>
+        <input
+          disabled
+          type="text"
+          id="CustomerCode"
+          name="CustomerCode"
+          value={CustomerCode}
+        />
         <label>Sub Total:</label>
         <input
+          disabled
           type="text"
           id="SubTotal"
           name="SubTotal"
           value={SubTotal}
-          onChange={handleInputChange}
         />
 
         <label>Discount Total:</label>
@@ -94,13 +108,13 @@ const UpdateOrderForm = () => {
       </div>
 
       <button type="submit" className="add-order-button">
-        Add
+        Save
       </button>
-      <Link to="/add-order">
+      <Link to="/">
         <button className="close-order-button">Close</button>
       </Link>
     </form>
   );
 };
 
-export default UpdateOrderForm;
+export default UpdateOrder;
